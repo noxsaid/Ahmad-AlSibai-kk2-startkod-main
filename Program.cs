@@ -13,43 +13,52 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
-    int choice = int.Parse(Console.ReadLine());
-
-    if (choice == 1)
+    if (int.TryParse(Console.ReadLine(), out int choice))
     {
-        Console.Write("Namn: ");
-        string name = Console.ReadLine();
-        Console.Write("Pris: ");
-        int price = int.Parse(Console.ReadLine());
-        list.Add(new Item(name, price));
-    }
-    else if (choice == 2)
-    {
-        Console.Write("Nummer: ");
-        int number = int.Parse(Console.ReadLine());
-        list.RemoveAt(number);
-    }
-    else if (choice == 3)
-    {
-        list.Save();
-    }
-    else if (choice == 4)
-    {
-        Console.Write("Namn att söka efter: ");
-        string wanted = Console.ReadLine();
-        Item found = list.Find(wanted);
-
-        if (found == null)
+        if (choice == 1)
         {
-            Console.WriteLine("Varan finns inte i listan.");
+            Console.Write("Namn: ");
+            string name = Console.ReadLine();
+            Console.Write("Pris: ");
+            int price = int.Parse(Console.ReadLine());
+            list.Add(new Item(name, price));
+        }
+        else if (choice == 2)
+        {
+            Console.Write("Nummer: ");
+            int number = int.Parse(Console.ReadLine());
+            list.RemoveAt(number);
+        }
+        else if (choice == 3)
+            {
+                list.Save();
+            }
+        else if (choice == 4)
+            {
+                Console.Write("Namn att söka efter: ");
+                string wanted = Console.ReadLine();
+                Item found = list.Find(wanted);
+
+            if (found == null)
+            {
+                Console.WriteLine("Varan finns inte i listan.");
+            }
+            else
+            {
+                Console.WriteLine($"Hittade: {found}");
+            }
+        }
+        else if (choice == 5)
+        {
+            break;
         }
         else
         {
-            Console.WriteLine($"Hittade: {found}");
+            Console.WriteLine("Ogiltigt val, välj ett nummer från menyn (1-5).");
         }
     }
-    else if (choice == 5)
+    else
     {
-        break;
+        Console.WriteLine("Felaktig inmatning. Vänligen ange en siffra från menyn.");
     }
 }
