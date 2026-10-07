@@ -63,7 +63,7 @@ class ShoppingList
     }
 
     // Writes one item per line, as "price;name".
-    public void Save()
+    public bool Save()
     {
         List<string> lines = new List<string>();
 
@@ -75,12 +75,16 @@ class ShoppingList
         try
         {
             File.WriteAllText(path, string.Join("\r\n", lines) + "\r\n");
+            return true;
         }
-        catch
+        catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+        catch (IOException)
         {
+            return false;
         }
-
-        Console.WriteLine("Listan är sparad.");
     }
 
     // Reads the file back into the list.

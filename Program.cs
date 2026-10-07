@@ -58,8 +58,15 @@ while (true)
         }
         else if (choice == 3)
             {
-                list.Save();
+                if (list.Save())
+            {
+                Console.WriteLine ("Listan är sparad.");
             }
+            else
+            {
+                Console.WriteLine ("Misslyckades med att spara listan. Kontrollera om filen är skrivskyddad (read-only).");
+            }
+        }
         else if (choice == 4)
             {
                 Console.Write("Namn att söka efter: ");
