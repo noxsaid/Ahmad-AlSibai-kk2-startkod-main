@@ -19,8 +19,22 @@ while (true)
         {
             Console.Write("Namn: ");
             string name = Console.ReadLine();
-            Console.Write("Pris: ");
-            int price = int.Parse(Console.ReadLine());
+            int price = 0;
+            bool valid = false;
+
+            while (!valid)
+            {
+                Console.Write("Pris: ");
+
+                if (int.TryParse(Console.ReadLine(), out price))
+                {
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Det där var inte ett heltal, försök igen.");
+                }
+            }
             list.Add(new Item(name, price));
         }
         else if (choice == 2)
