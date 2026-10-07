@@ -41,7 +41,14 @@ while (true)
         {
             Console.Write("Nummer: ");
             int number = int.Parse(Console.ReadLine());
-            list.RemoveAt(number);
+            if (list.RemoveAt(number))
+            {
+                Console.WriteLine("Varan har tagits bort.");
+            }
+            else
+            {
+                Console.WriteLine("Ogiltigt nummer. Vänligen välj ett nummer från listan.");
+            }
         }
         else if (choice == 3)
             {
