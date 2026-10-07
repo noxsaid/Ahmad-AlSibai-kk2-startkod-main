@@ -40,7 +40,8 @@ while (true)
         else if (choice == 2)
         {
             Console.Write("Nummer: ");
-            int number = int.Parse(Console.ReadLine());
+            if (int.TryParse(Console.ReadLine(), out int number))
+            {
             if (list.RemoveAt(number))
             {
                 Console.WriteLine("Varan har tagits bort.");
@@ -48,6 +49,11 @@ while (true)
             else
             {
                 Console.WriteLine("Ogiltigt nummer. Vänligen välj ett nummer från listan.");
+            }
+        }
+            else
+            {
+                Console.WriteLine("Felaktig inmatning. Vänligen ange en siffra.");
             }
         }
         else if (choice == 3)
