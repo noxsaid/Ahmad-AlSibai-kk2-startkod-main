@@ -321,8 +321,36 @@ public bool Save()
 
 
 # Designval
-
+The `Add` method in `ShoppingList` adds a budget limit and returns `false` without adding the item if `Total() + item.Price` exceeds the limit, where a total of exactly 500 kr is allowed (`>`). Reaching the budget limit is treated as an expected user event rather than a program error, which is why a boolean return value was chosen over throwing an exception—maintaining consistency with `RemoveAt` and `Save`. In `Program.cs`, the return value is evaluated in an `if` statement to give the user clear feedback while allowing the program to continue running uninterrupted. This differs from the guard clauses in `Item`, where exceptions are thrown because an invalid object (with an empty name or negative price) should never exist in memory. An item that exceeds the budget is a completely valid `Item` object on its own; it simply cannot fit within the list's current budget limit.
 
 
 
 # Klassdiagram
+
+
+```mermaid
+classDiagram
+    class Item {
+        +string Name
+        +int Price
+        +Item(name, price)
+        +ToString() string
+    }
+    class ShoppingList {
+        -List~Item~ items
+        -string path
+        -int budgetLimit
+        +Add(item) bool
+        +RemoveAt(number) bool
+        +Total() int
+        +Find(name) Item
+        +Print() void
+        +Save() bool
+        +Load() void
+    }
+    class Program {
+        +Main()
+    }
+    ShoppingList "1" o-- "*" Item
+    Program --> ShoppingList
+    Program ..> Item
