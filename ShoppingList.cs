@@ -108,7 +108,22 @@ class ShoppingList
             string[] parts = line.Split(';');
             if(parts.Length == 2  && int.TryParse(parts[0], out int price))
             {
-            items.Add(new Item(parts[1], int.Parse(parts[0])));
+                try
+                {
+                    items.Add(new Item(parts[1], price));
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine($"Hoppase över felaktig rad i filen : {ex.Message}");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Hoppade över felaktig rad i filen: {ex.Message}");
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(line))
+            {
+                Console.WriteLine("Hoppade över en felaktigt formaterad rad i filen.");
             }
         }
     }
