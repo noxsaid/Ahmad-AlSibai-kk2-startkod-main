@@ -90,12 +90,20 @@ class ShoppingList
     // Reads the file back into the list.
     public void Load()
     {
+        if (!File.Exists(path))
+        {
+            Console.WriteLine("Ingen sparad lista hittades, startar med en tom lista.");
+            return;
+        }
         string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)
         {
             string[] parts = line.Split(';');
+            if(parts.Length == 2  && int.TryParse(parts[0], out int price))
+            {
             items.Add(new Item(parts[1], int.Parse(parts[0])));
+            }
         }
     }
 }
