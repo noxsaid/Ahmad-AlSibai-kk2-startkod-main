@@ -3,15 +3,21 @@ class ShoppingList
 {
     private List<Item> items = new List<Item>();
     private string path;
+    private int budgetLimit = 500;
 
     public ShoppingList(string path)
     {
         this.path = path;
     }
 
-    public void Add(Item item)
+    public bool Add(Item item)
     {
+        if(Total() + item.Price > budgetLimit)
+        {
+            return false;
+        }
         items.Add(item);
+        return true;
     }
 
     // Removes the item the user sees as number 1, 2, 3 ...

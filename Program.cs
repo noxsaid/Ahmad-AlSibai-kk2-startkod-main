@@ -36,8 +36,14 @@ while (true)
                 }
                 try
                 {
-                    list.Add(new Item(name, price));
-                    Console.WriteLine("Varan har lagts till.");
+                   if  (list.Add(new Item(name, price)))
+                    {
+                        Console.WriteLine("Varan har lagts till.");    
+                    }
+                    else
+                    {
+                        Console.WriteLine("Kunde inte lägga till varan: Totalsumman överstiger budgetgränsen (500 kr).");
+                    }
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
