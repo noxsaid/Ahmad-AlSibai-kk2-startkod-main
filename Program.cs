@@ -34,8 +34,20 @@ while (true)
                 {
                     Console.WriteLine("Det där var inte ett heltal, försök igen.");
                 }
+                try
+                {
+                    list.Add(new Item(name, price));
+                    Console.WriteLine("Varan har lagts till.");
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine($"Felaktigt pris: {ex.Message}");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Felaktigt namn: {ex.Message}");
+                }
             }
-            list.Add(new Item(name, price));
         }
         else if (choice == 2)
         {
