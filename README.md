@@ -184,7 +184,9 @@ public bool RemoveAt(int number)
         return false;
     }
 ```
-`RemoveAt` now checks that `number >= 1 && number <= items.Count` and returns true or false. `Program.cs` prints a message when it returns false, so ShoppingList handles the data and Program.cs handles what the user sees.**Commit:** `058bc74b606c8ce48eec1ab06a4eb54b907b0ed9`
+`RemoveAt` now checks that `number >= 1 && number <= items.Count` and returns true or false. `Program.cs` prints a message when it returns false, so ShoppingList handles the data and Program.cs handles what the user sees.
+
+**Commit:** `058bc74b606c8ce48eec1ab06a4eb54b907b0ed9`
 
 
 ## Bug 6: Crash when the item number is not a number
