@@ -10,6 +10,4 @@
 | 6 | Number outside the list at `Nummer:` (`ArgumentOutOfRangeException`) | `ShoppingList.cs:20`, from `Program.cs:44` | No bounds check before `items.RemoveAt(number - 1)` | `058bc74b606c8ce48eec1ab06a4eb54b907b0ed9` |
 | 7 | `Nummer:` crash on `abc` | `Program.cs:43` | `int.Parse` on user input | `0e1f6f6c2bae460ba7ef880740bb3bede53db8c7` |
 | 8 | Hidden failure: "Listan är sparad." printed when the file is read-only | `Save()` in `ShoppingList.cs` | An empty `catch { }` swallowed `UnauthorizedAccessException`, and the success message printed anyway | `2eb9c9af2a40edb3d5d7ce9d4601eb173cf80fe7` |
-
-
-
+| 9 | Regression from #5: invalid price still adds the item with price 0 (repeated on every retry) | `Program.cs`, price loop | The `try { list.Add(...) }` block ran even when `int.TryParse` failed | `53ffc6ac62f8b61d1c30fff45bb2df84c7799192` |
