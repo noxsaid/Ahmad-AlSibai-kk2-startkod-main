@@ -26,19 +26,19 @@ while (true)
             {
                 Console.Write("Pris: ");
 
-                if (int.TryParse(Console.ReadLine(), out price))
-                {
-                    valid = true;
-                }
-                else
+                if (!int.TryParse(Console.ReadLine(), out price))
                 {
                     Console.WriteLine("Det där var inte ett heltal, försök igen.");
+                    continue;
                 }
+
+                valid = true;
+
                 try
                 {
-                   if  (list.Add(new Item(name, price)))
+                    if (list.Add(new Item(name, price)))
                     {
-                        Console.WriteLine("Varan har lagts till.");    
+                        Console.WriteLine("Varan har lagts till.");
                     }
                     else
                     {
